@@ -42,7 +42,7 @@
         data() {
             return {
                 employees: {},
-                errors: []
+                error: {}
             }
         },
 
@@ -50,14 +50,14 @@
             loadEmployees() {
                 axios.get('/employees')
                     .then((response) => (this.employees = response.data))
-                    .catch((error) => this.errors=error.response.data.errors)
+                    .catch((error) => this.error=error.response.data.error)
             },
 
             deleteEmployee(key, id) {
                 //console.log(`${key} ${id}`)
                 axios.delete(`/employees/${id}`)
                     .then((response) => this.employees.splice(key,1))
-                    .catch((error) => this.errors=error.response.data.errors)
+                    .catch((error) => this.error=error.response.data.error)
             },
         },
 
